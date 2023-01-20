@@ -22,7 +22,8 @@ canvas {
 	margin-left: -7.5%;
 	top: 54%;
 	width: 15%;
-	height: 14%;
+	max-height: 75px;
+	aspect-ratio: 2/1;
 	background-color: var(--blue-200);
 	color: var(--neutral-200);
 	font-size: 1rem;
@@ -37,6 +38,7 @@ h1 {
 }
 .pill-button {
 	border: none;
+
 	border-radius: 500px;
 }
 .container {
