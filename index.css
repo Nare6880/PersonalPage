@@ -9,12 +9,12 @@
 	--neutral-200: #f1e8e6;
 }
 canvas {
-	height: 66%;
-	width: 100%;
 	margin: 0;
 }
 .relative-container {
 	position: relative;
+	width: 100%;
+	height: 66%;
 }
 .canvas-button {
 	position: absolute;
