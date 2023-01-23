@@ -6,8 +6,10 @@ var height;
 var width;
 var particles = [];
 var context;
-var numParticles = 500;
-maxInitalSpeed = 5;
+var numParticles = 100;
+var maxInitalSpeed = 5;
+var maxSpeed = 10;
+var nConnections = 5;
 window.onresize = function () {
 	canvas.width = document.body.clientWidth;
 	height = canvas.height = window.innerHeight * 0.66;
@@ -36,6 +38,7 @@ window.onload = function () {
 				],
 				radius: Math.floor(Math.random() * 2 + 2),
 				previousPos: [],
+				nearest: [],
 			};
 
 			particles.push(tempObject);
@@ -63,39 +66,99 @@ onmousemove = function (e) {
 	mousePos[0] = e.clientX;
 	mousePos[1] = e.clientY - 68;
 };
-
+//
 function accelerate(particle) {
 	var distance =
 		Math.pow(particle["pos"][0] - mousePos[0], 2) +
 		Math.pow(particle["pos"][1] - mousePos[1], 2);
 	var acceleration = 1200 / distance;
-
 	var component_x =
 		(acceleration * (mousePos[0] - particle["pos"][0])) / Math.sqrt(distance);
 	var component_y =
 		(acceleration * (mousePos[1] - particle["pos"][1])) / Math.sqrt(distance);
 	particle.velocity[0] += component_x;
 	particle.velocity[1] += component_y;
+	if (Math.abs(particle.velocity[0]) > maxSpeed) {
+		particle.velocity[0] =
+			(maxSpeed * particle.velocity[0]) / Math.abs(particle.velocity[0]);
+	}
+	if (Math.abs(particle.velocity[1]) > maxSpeed) {
+		particle.velocity[1] =
+			(maxSpeed * particle.velocity[1]) / Math.abs(particle.velocity[1]);
+	}
+}
+function addNNearestConnections() {
+	for (var i = 0; i < particles.length; i++) {
+		var tempConnections = [];
+		for (var j = 0; j < particles.length; j++) {
+			var distance = calcDistance(particles[i], particles[j]);
+			var idex = findLoc(distance, tempConnections, 0, tempConnections.length);
+			tempConnections.splice(idex + 1, 0, [distance, j]);
+		}
+		tempConnections = tempConnections.map((element) => {
+			return element[1];
+		});
+		var j = 0;
+		while (j < tempConnections.length && tempConnections > nConnections) {
+			if (particles[tempConnections[j]].nearest.includes(i)) {
+				tempConnections.pop(j);
+				j--;
+				if (tempConnections.length == 0) break;
+			}
+
+			j++;
+		}
+		particles[i].nearest = tempConnections.splice(0, 5);
+	}
+}
+function findLoc(el, arr, st, en) {
+	st = st || 0;
+	en = en || arr.length;
+	for (i = 0; i < arr.length; i++) {
+		if (arr[i][0] > el) return i - 1;
+	}
+	return en;
+}
+function calcDistance(p1, p2) {
+	return Math.sqrt((p1.pos[0] - p2.pos[0]) ** 2 + (p1.pos[1] - p2.pos[1]) ** 2);
+}
+function drawConnections(particle) {
+	for (var i = 0; i < particle.nearest.length; i++) {
+		context.beginPath();
+		context.strokeStyle = "#3ea9e7";
+		context.moveTo(particle.pos[0], particle.pos[1]);
+		var tempParticle = particles[particle.nearest[i]];
+		context.lineTo(tempParticle.pos[0], tempParticle.pos[1]);
+		context.stroke();
+	}
 }
 update = function () {
 	context.clearRect(0, 0, canvas.width, canvas.height);
+	addNNearestConnections();
+
+	console.log(particles[1].nearest);
 	for (var i = 0; i < particles.length; i++) {
 		accelerate(particles[i]);
 		var newX = particles[i].pos[0] + particles[i]["velocity"][0];
 		var newY = particles[i].pos[1] + particles[i]["velocity"][1];
-		if (newX < 0) {
-			newX += canvas.width;
+		if (newX < 0 || newX > canvas.width) {
+			particles[i].velocity[0] = -particles[i].velocity[0];
+			newX = particles[i].pos[0] + particles[i]["velocity"][0];
 		}
-		if (newY < 0) {
-			newY += canvas.height;
+		if (newY < 0 || newY > canvas.height) {
+			particles[i].velocity[1] = -particles[i].velocity[1];
+			newY = particles[i].pos[1] + particles[i]["velocity"][1];
 		}
 		particles[i].previousPos.unshift([
 			particles[i].pos[0],
 			particles[i].pos[1],
 		]);
 		if (particles[i].previousPos.length >= 4) particles[i].previousPos.pop();
-		particles[i].pos = [newX % canvas.width, newY % canvas.height];
+		particles[i].pos = [newX, newY];
+	}
+	for (var i = 0; i < particles.length; i++) {
 		drawParticle(particles[i]);
+		drawConnections(particles[i]);
 	}
 };
 setInterval(update, 50);
