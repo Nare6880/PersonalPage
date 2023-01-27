@@ -29,6 +29,7 @@ canvas {
 	font-size: 1rem;
 }
 h1 {
+	font-size: 2.75rem;
 	position: absolute;
 	top: 26%;
 	text-align: center;
@@ -45,7 +46,7 @@ h1 {
 	background-color: var(--neutral-500);
 }
 body {
-	background-color: var(--neutral-200);
+	background-color: var(--neutral-500);
 	color: var(--neutral-700);
 	height: 100%;
 	margin: 0;
@@ -61,24 +62,26 @@ canvas {
 	margin-right: auto;
 	max-width: 700px;
 	width: 1fr;
-	height: 1fr;
+	height: 65px;
 	border-radius: 0px 0px 10px 10px;
 	background-color: var(--neutral-200);
 	padding: 10px;
 }
-a,
-a:link,
-a:visited {
+.menu-button {
 	background-color: var(--neutral-200);
-	padding: 14px 25px;
+	height: 1fr;
+	width: 1fr;
+	border: none;
+	font-size: 1.5rem;
 	color: var(--blue-200);
 	text-align: center;
 	text-decoration: none;
 	border-radius: 10px;
 }
-a:hover {
+.menu-button:hover {
 	color: var(--blue-100) !important;
 	transition: 0.5s;
+	cursor: pointer;
 }
 .center {
 	margin-top: 0%;
@@ -87,8 +90,30 @@ a:hover {
 	align-items: center;
 	width: 1fr;
 	height: 1fr;
-	background: var(--neutral-200);
 }
-.yeet {
-	background-color: #006494;
+h2 {
+	color: var(--blue-200);
+	margin-left: 20px;
+}
+.section-Container {
+	background-color: var(--neutral-200);
+	margin: auto auto;
+	width: 75%;
+	padding: 5px;
+	border-radius: 6px;
+}
+.skills-grid {
+	display: grid;
+	gap: 5px;
+	grid-template-columns: repeat(5, 1fr);
+}
+.skill-button {
+	color: var(--blue-200);
+	height: 40px;
+	border-radius: 5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: (98, 98, 98);
+	font-size: 1.2rem;
+	background-color: var(--neutral-200);
 }
