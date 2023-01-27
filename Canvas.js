@@ -9,7 +9,7 @@ var context;
 var numParticles = 100;
 var maxInitalSpeed = 5;
 var maxSpeed = 10;
-var nConnections = 5;
+var nConnections = 6;
 window.onresize = function () {
 	canvas.width = document.body.clientWidth;
 	height = canvas.height = window.innerHeight * 0.66;
@@ -108,7 +108,7 @@ function addNNearestConnections() {
 
 			j++;
 		}
-		particles[i].nearest = tempConnections.splice(0, 5);
+		particles[i].nearest = tempConnections.splice(0, nConnections);
 	}
 }
 function findLoc(el, arr, st, en) {
