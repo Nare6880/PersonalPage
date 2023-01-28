@@ -110,6 +110,31 @@ h2 {
 	padding: 5px;
 	margin-top: 20px;
 }
+.section-sub-Container h3 {
+	text-align: left;
+	margin-left: 0;
+	color: #5a5a5a;
+}
+.section-sub-Container p {
+	color: #858585;
+	text-align: left;
+	margin-top: -0.5rem;
+}
+.align-p-right {
+	transform: translate(0, -2rem);
+	text-align: end !important;
+	margin: 0;
+}
+.section-sub-Container {
+	border: 2px solid #f4f4f4;
+	background-color: white;
+	width: 30%;
+	padding: 1em;
+	min-width: 400px;
+	margin: 0 auto;
+	height: auto;
+	margin-bottom: 20px;
+}
 .first {
 	margin-top: 40px;
 }
