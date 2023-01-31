@@ -6,8 +6,20 @@
 	<body>
 		<div class="container">
 			<div class="grid">
-				<button class="menu-button">Education</button>
-				<button class="menu-button">Education</button>
+				<button
+					class="menu-button"
+					type="button"
+					onClick="document.getElementById('About').scrollIntoView({behavior: 'smooth'});"
+				>
+					About
+				</button>
+				<button
+					class="menu-button"
+					type="button"
+					onClick="document.getElementById('Education').scrollIntoView({behavior: 'smooth'});"
+				>
+					Education
+				</button>
 				<button class="menu-button">Education</button>
 				<button class="menu-button">Education</button>
 			</div>
@@ -17,12 +29,20 @@
 			<h1>Nathan Reed</h1>
 			<button class="canvas-button pill-button">Download Resume</button>
 		</div>
-		<div class="section-Container first">
+		<div class="section-Container first" id="About">
 			<h2>About Me</h2>
+			<div class="grid-About">
+				<img
+					src="Nathan.jpeg"
+					class="ProfileImage"
+					alt="Nathan Reed Profile Picture"
+				/>
+				<p2>Hello, I am Nathan Reed. </p2>
+			</div>
 		</div>
 		<div class="section-Container">
 			<h2>Education</h2>
-			<div class="section-sub-Container">
+			<div class="section-sub-Container" id="Education">
 				<h3>//Kennesaw State University</h3>
 				<p class="align-p-right">Aug 2022 - Current</p>
 				<p>Masters of Science in Software Engineering</p>
