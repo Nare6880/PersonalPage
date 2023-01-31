@@ -10,16 +10,21 @@ var numParticles = 100;
 var maxInitalSpeed = 5;
 var maxSpeed = 10;
 var nConnections = 6;
+var container;
+var initalHeight;
 window.onresize = function () {
-	canvas.width = document.body.clientWidth;
-	height = canvas.height = window.innerHeight * 0.66;
+	if (canvas.width != document.body.clientWidth)
+		canvas.width = document.body.clientWidth;
+	if (initalHeight > window.innerHeight * 0.66)
+		height = canvas.height = window.innerHeight * 0.66;
 };
 window.onload = function () {
 	console.log("loaded");
+
 	var canvas = document.getElementById("canvas");
-	var container = document.getElementsByClassName("relative-container");
+	container = document.getElementsByClassName("relative-container");
 	var color = "#3ea9e7";
-	height = canvas.height = window.innerHeight * 0.66;
+	initalHeight = height = canvas.height = window.innerHeight * 0.66;
 	console.log(window.innerHeight);
 	canvas.width = document.body.clientWidth;
 	context = canvas.getContext("2d");
@@ -136,7 +141,6 @@ update = function () {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	addNNearestConnections();
 
-	console.log(particles[1].nearest);
 	for (var i = 0; i < particles.length; i++) {
 		accelerate(particles[i]);
 		var newX = particles[i].pos[0] + particles[i]["velocity"][0];

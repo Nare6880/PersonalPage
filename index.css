@@ -139,7 +139,7 @@ h2 {
 	margin-top: 40px;
 }
 .last {
-	margin-bottom: 100px;
+	margin-bottom: 100px !important;
 }
 
 .skills-grid {
@@ -157,6 +157,19 @@ h2 {
 	border: none;
 	font-size: 1.1rem;
 	background-color: white;
+}
+.ProfileImage {
+	width: 250px;
+	border-radius: 800px;
+}
+.grid-About {
+	display: grid;
+	width: 60%;
+	min-width: 500px;
+	margin: 0 auto;
+	grid-template-columns: 1fr 2fr;
+	align-items: center;
+	justify-items: center;
 }
 .skill-button:hover {
 	background-color: rgb(185, 185, 185);
