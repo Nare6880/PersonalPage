@@ -20,8 +20,20 @@
 				>
 					Education
 				</button>
-				<button class="menu-button">Education</button>
-				<button class="menu-button">Education</button>
+				<button
+					class="menu-button"
+					type="button"
+					onClick="document.getElementById('Skills').scrollIntoView({behavior: 'smooth'});"
+				>
+					Skills
+				</button>
+				<button
+					class="menu-button"
+					type="button"
+					onClick="document.getElementById('Projects').scrollIntoView({behavior: 'smooth'});"
+				>
+					Projects
+				</button>
 			</div>
 		</div>
 		<div class="relative-container">
@@ -55,7 +67,7 @@
 				<p>Minor in Philosophy</p>
 			</div>
 		</div>
-		<div class="section-Container last">
+		<div class="section-Container" id="Skills">
 			<h2>Skills</h2>
 			<div class="skills-grid">
 				<button class="skill-Button">Python</button>
@@ -72,5 +84,21 @@
 				<button class="skill-Button">Yeet</button>
 			</div>
 		</div>
+		<div class="section-Container" id="Projects">
+			<h2>Projects</h2>
+			<div class="projects-Grid">
+				<div class="card-Group">
+					<div class="card one">1</div>
+					<div class="card">2</div>
+					<div class="card">3</div>
+				</div>
+				<div class="card-Group">
+					<div class="card one">1</div>
+					<div class="card">2</div>
+					<div class="card">3</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer"></div>
 	</body>
 </html>

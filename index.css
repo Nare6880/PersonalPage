@@ -175,3 +175,41 @@ h2 {
 	background-color: rgb(185, 185, 185);
 	transition: 0.5s;
 }
+#footer {
+	height: 50px;
+	width: 100%;
+	background: transparent;
+}
+.card {
+	position: absolute;
+	aspect-ratio: 5/7;
+	width: 30vmin;
+	color: white;
+	border-radius: 5px;
+	transition: transform 300ms cubic-bezier(0.25, 0.76, 0.75, 0.93);
+	background-color: rgba(0, 0, 0, 0.096);
+}
+.card-Group {
+	aspect-ratio: 5/7;
+	width: 30vmin;
+	margin-bottom: 10px;
+}
+.card:nth-child(1) {
+	transform: translateX(-8%) rotate(-1deg);
+}
+.card:nth-child(2) {
+	transform: translateX(7%) rotate(3deg);
+}
+.card-Group:hover > .card:nth-child(1) {
+	transform: translateX(-105%);
+}
+.card-Group:hover > .card:nth-child(2) {
+	transform: translateX(105%);
+}
+.projects-grid {
+	display: grid;
+	place-items: center;
+	grid-template-columns: repeat(2, 1fr);
+	max-width: 80%;
+	margin: 0 auto;
+}
