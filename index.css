@@ -190,9 +190,12 @@ h2 {
 	background-color: rgba(0, 0, 0, 0.096);
 }
 .card-Group {
+	position: absolute;
 	aspect-ratio: 5/7;
 	width: 30vmin;
 	margin-bottom: 10px;
+	transform: translate(-50%);
+	transition: transform 400ms ease;
 }
 .card:nth-child(1) {
 	transform: translateX(-8%) rotate(-1deg);
@@ -207,9 +210,37 @@ h2 {
 	transform: translateX(105%);
 }
 .projects-grid {
-	display: grid;
 	place-items: center;
-	grid-template-columns: repeat(2, 1fr);
-	max-width: 80%;
+	height: 45vmin;
+	max-width: 0%;
 	margin: 0 auto;
+}
+.project-Nav-Button {
+	border-radius: 800px;
+	border: none;
+	aspect-ratio: 1/1;
+	width: 66px;
+	background-color: transparent;
+	color: var(--blue-200);
+	cursor: pointer;
+}
+.card-Group[data-status="active"] {
+	transition-delay: 200ms;
+}
+.card-Group[data-status="unknown"] {
+	display: none;
+}
+.card-Group[data-status="after"] {
+	transform: translateX(50%) scale(0);
+}
+.card-Group[data-status="before"] {
+	transform: translateX(-175%) scale(0);
+}
+.card-Group[data-status="activatingLeft"] {
+	transform: translateX(-175%) scale(0);
+	transition: none;
+}
+.card-Group[data-status="activatingRight"] {
+	transform: translateX(50%) scale(0);
+	transition: none;
 }

@@ -1,7 +1,12 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="index.css" />
+		<link
+			href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+			rel="stylesheet"
+		/>
 		<script src="Canvas.js"></script>
+		<script src="Project.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -87,16 +92,24 @@
 		<div class="section-Container" id="Projects">
 			<h2>Projects</h2>
 			<div class="projects-Grid">
-				<div class="card-Group">
+				<div class="card-Group" data-index="0" data-status="active">
 					<div class="card one">1</div>
 					<div class="card">2</div>
 					<div class="card">3</div>
 				</div>
-				<div class="card-Group">
+				<div class="card-Group" data-index="1" data-status="unknown">
 					<div class="card one">1</div>
 					<div class="card">2</div>
 					<div class="card">3</div>
 				</div>
+			</div>
+			<div class="project-Button-Group">
+				<button class="project-Nav-Button" onclick="handleLeft()" id="left">
+					<i class="fa fa-angle-left fa-5x" aria-hidden="true"></i>
+				</button>
+				<button class="project-Nav-Button" onclick="handleRight()" id="right">
+					<i class="fa fa-angle-right fa-5x" aria-hidden="true"></i>
+				</button>
 			</div>
 		</div>
 		<div id="footer"></div>
