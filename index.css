@@ -8,13 +8,18 @@
 	--neutral-300: #edd2cb;
 	--neutral-200: #f1e8e6;
 }
+
 canvas {
 	margin: 0;
+}
+.stopScroll {
+	height: 100%;
+	overflow: hidden;
 }
 .relative-container {
 	position: relative;
 	width: 100%;
-	height: 66%;
+	height: auto;
 	border-radius: 5px;
 }
 .canvas-button {
@@ -23,13 +28,20 @@ canvas {
 	transform: translate(-50%, -50%);
 	top: 54%;
 	width: 15%;
-	min-width: 250;
+	min-width: 250px;
 	max-height: 75px;
 	aspect-ratio: 2/1;
 	text-align: center;
 	background-color: var(--blue-200);
 	color: var(--neutral-200);
 	font-size: 1rem;
+}
+.Menu {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	width: 100%;
 }
 h1 {
 	font-size: 2.75rem;
@@ -46,13 +58,14 @@ h1 {
 	border-radius: 500px;
 }
 .container {
-	background-color: var(--neutral-500);
+	background-color: transparent;
 }
 body {
 	background-color: #f4f4f4;
 	color: var(--neutral-700);
-	height: 100%;
 	margin: 0;
+	width: 100%;
+	position: absolute;
 }
 canvas {
 	background-color: var(--neutral-500);
@@ -60,12 +73,13 @@ canvas {
 }
 .grid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: 0.5%;
 	margin-left: auto;
 	margin-right: auto;
+	width: 100%;
 	max-width: 700px;
-	width: 1fr;
+	width: 100%;
 	height: 65px;
 	border-radius: 0px 0px 10px 10px;
 	background-color: var(--neutral-200);
@@ -73,8 +87,8 @@ canvas {
 }
 .menu-button {
 	background-color: var(--neutral-200);
-	height: 1fr;
-	width: 1fr;
+	height: 100%;
+	width: 100%;
 	border: none;
 	font-size: 1.5rem;
 	color: var(--blue-200);
@@ -120,23 +134,27 @@ h2 {
 	text-align: left;
 	margin-top: -0.5rem;
 }
-.align-p-right {
-	transform: translate(0, -2rem);
-	text-align: end !important;
-	margin: 0;
+
+@media only screen and (min-width: 500) {
+	.align-p-right {
+		transform: translate(0, -2rem);
+		text-align: end !important;
+		margin: 0;
+	}
 }
 .section-sub-Container {
 	border: 2px solid #f4f4f4;
 	background-color: white;
+	filter: drop-shadow(5px 7px 3px rgba(0, 0, 0, 0.507));
 	width: 30%;
 	padding: 1em;
-	min-width: 400px;
+	min-width: 300px;
 	margin: 0 auto;
 	height: auto;
 	margin-bottom: 20px;
 }
 .first {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 .last {
 	margin-bottom: 100px !important;
@@ -158,14 +176,19 @@ h2 {
 	font-size: 1.1rem;
 	background-color: white;
 }
+.about-p {
+	width: 100%;
+	text-align: center;
+}
 .ProfileImage {
-	width: 250px;
+	width: 100%;
+	max-width: 250px;
 	border-radius: 800px;
 }
 .grid-About {
 	display: grid;
 	width: 60%;
-	min-width: 500px;
+	min-width: 375px;
 	margin: 0 auto;
 	grid-template-columns: 1fr 2fr;
 	align-items: center;
@@ -211,6 +234,12 @@ h2 {
 .card-Group:hover > .card:nth-child(2) {
 	transform: translateX(105%);
 }
+.card-Group[data-Status="maximized"] > .card:nth-child(1) {
+	transform: translateX(-105%);
+}
+.card-Group[data-Status="maximized"] > .card:nth-child(2) {
+	transform: translateX(105%);
+}
 .projects-grid {
 	place-items: center;
 	height: 45vmin;
@@ -246,6 +275,49 @@ h2 {
 	transform: translateX(50%) scale(0);
 	transition: none;
 }
+.card-Group[data-Status="maximized"] {
+	transition: transform 400ms ease;
+	transform: translateX(-50%) translateY(-75%) scale(1.3);
+	z-index: 100;
+}
+.card-Group[data-Status="maximized"]::after {
+	content: "";
+	position: fixed;
+	overflow: scroll;
+	inset: 0;
+	transition: none;
+	left: -50vw;
+	top: -50vw;
+	width: 200vw;
+	height: 200vw;
+	z-index: -1;
+	opacity: 1;
+	background: rgba(40, 40, 40, 0.75);
+	scroll-behavior: disable;
+}
 .card > h3 {
 	color: var(--blue-200);
+}
+
+[aria-hidden="true"] {
+	transition: opacity 1s, z-index 0s 1s;
+	width: 100vw;
+	z-index: -1;
+	opacity: 0;
+}
+
+[aria-hidden="false"] {
+	transition: opacity 1s;
+	width: 100%;
+	z-index: 1;
+	opacity: 1;
+}
+svg {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	height: 20px;
+}
+:focus {
+	outline: 2px yellowgreen solid;
 }

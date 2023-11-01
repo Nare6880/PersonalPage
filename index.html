@@ -7,9 +7,11 @@
 		/>
 		<script src="Canvas.js"></script>
 		<script src="Project.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
-	<body>
-		<div class="container">
+
+	<body class="">
+		<div class="container menu">
 			<div class="grid">
 				<button
 					class="menu-button"
@@ -58,7 +60,7 @@
 					class="ProfileImage"
 					alt="Nathan Reed Profile Picture"
 				/>
-				<p2>Hello, I am Nathan Reed. </p2>
+				<div class="about-p"><p2>Hello, I am Nathan Reed. </p2></div>
 			</div>
 		</div>
 		<div class="section-Container">
@@ -97,17 +99,32 @@
 			<h2>Projects</h2>
 			<div class="projects-Grid">
 				<div class="card-Group" data-index="0" data-status="active">
-					<div class="card one">1</div>
-					<div class="card">2</div>
-					<div class="card">3</div>
+					<div class="card one" onclick="maximize()">1</div>
+					<div class="card" onclick="maximize()">2</div>
+					<div class="card" onclick="maximize()">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							onclick="minimize(event)"
+							viewBox="0 0 50 50"
+						>
+							<path
+								d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 37.690466 12.309534 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 13.390466 46 4 36.609534 4 25 C 4 13.390466 13.390466 4 25 4 z M 32.990234 15.986328 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.990234 15.986328 z"
+							/>
+						</svg>
+						3
+					</div>
 				</div>
 				<div class="card-Group" data-index="1" data-status="unknown">
 					<div class="card one">
-						<h3>Teemo</h3>
+						<h3>its a gruesome day to be a hotdog</h3>
 					</div>
 					<div class="card"></div>
 					<div class="card">
-						<h3>Teemo</h3>
+						<h3>its a gruesome day to be a hotdog</h3>
+						<img
+							style="width: 100%"
+							src="https://thepretentiousfoodsnob.files.wordpress.com/2015/06/eat_enw_035_guyfieri_thumb2_raw-0-0.png"
+						/>
 					</div>
 				</div>
 			</div>

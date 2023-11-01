@@ -23,3 +23,16 @@ function handleLeft() {
 		idex = nextIdex;
 	});
 }
+function maximize() {
+	const currentGroup = document.querySelector(`[data-index="${idex}"]`);
+	document.body.className = "stopScroll";
+	currentGroup.dataset.status = "maximized";
+	console.log("maximized");
+}
+function minimize(event) {
+	const currentGroup = document.querySelector(`[data-index="${idex}"]`);
+	currentGroup.dataset.status = "active";
+	document.body.className = "";
+	console.log("minimized");
+	event.stopPropagation();
+}

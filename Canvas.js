@@ -9,14 +9,19 @@ var context;
 var numParticles = 100;
 var maxInitalSpeed = 5;
 var maxSpeed = 10;
-var nConnections = 6;
+var nConnections = 7;
 var container;
 var initalHeight;
+heightMax = 0.5;
 window.onresize = function () {
 	if (canvas.width != document.body.clientWidth)
 		canvas.width = document.body.clientWidth;
-	if (initalHeight > window.innerHeight * 0.66)
-		height = canvas.height = window.innerHeight * 0.66;
+	if (initalHeight > window.innerHeight * heightMax)
+		height = canvas.height = window.innerHeight * heightMax;
+	for (var i = 0; i < particles.length; i++) {
+		drawParticle(particles[i]);
+		drawConnections(particles[i]);
+	}
 };
 window.onload = function () {
 	console.log("loaded");
@@ -24,7 +29,7 @@ window.onload = function () {
 	var canvas = document.getElementById("canvas");
 	container = document.getElementsByClassName("relative-container");
 	var color = "#3ea9e7";
-	initalHeight = height = canvas.height = window.innerHeight * 0.66;
+	initalHeight = height = canvas.height = window.innerHeight * heightMax;
 	console.log(window.innerHeight);
 	canvas.width = document.body.clientWidth;
 	context = canvas.getContext("2d");
@@ -63,15 +68,13 @@ function drawParticle(particle) {
 		2 * Math.PI,
 		false
 	);
-
 	context.fillStyle = "#3ea9e7";
 	context.fill();
 }
 onmousemove = function (e) {
 	mousePos[0] = e.clientX;
-	mousePos[1] = e.clientY - 68;
+	mousePos[1] = e.clientY;
 };
-//
 function accelerate(particle) {
 	var distance =
 		Math.pow(particle["pos"][0] - mousePos[0], 2) +
@@ -97,8 +100,8 @@ function addNNearestConnections() {
 		var tempConnections = [];
 		for (var j = 0; j < particles.length; j++) {
 			var distance = calcDistance(particles[i], particles[j]);
-			var idex = findLoc(distance, tempConnections, 0, tempConnections.length);
-			tempConnections.splice(idex + 1, 0, [distance, j]);
+			var idex = findLoc(distance, tempConnections, tempConnections.length);
+			tempConnections.splice(idex, 0, [distance, j]);
 		}
 		tempConnections = tempConnections.map((element) => {
 			return element[1];
@@ -110,17 +113,15 @@ function addNNearestConnections() {
 				j--;
 				if (tempConnections.length == 0) break;
 			}
-
 			j++;
 		}
 		particles[i].nearest = tempConnections.splice(0, nConnections);
 	}
 }
-function findLoc(el, arr, st, en) {
-	st = st || 0;
+function findLoc(el, arr, en) {
 	en = en || arr.length;
 	for (i = 0; i < arr.length; i++) {
-		if (arr[i][0] > el) return i - 1;
+		if (arr[i][0] > el) return i;
 	}
 	return en;
 }
