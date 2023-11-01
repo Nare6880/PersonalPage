@@ -66,24 +66,48 @@ body {
 	margin: 0;
 	width: 100%;
 	position: absolute;
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+
+	/* Add a custom scroll bar style */
+	overflow: overlay; /* This is experimental and not supported in all browsers */
+	scroll-behavior: smooth; /* Optional, adds smooth scrolling behavior */
+}
+body::-webkit-scrollbar {
+	width: 1px; /* Adjust the width to your preference */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: transparent; /* Set to the background color to make it invisible */
+}
+
+/* Define the custom scrollbar appearance (Webkit) */
+body::-webkit-scrollbar-track {
+	background: transparent; /* Set to the background color to make it invisible */
+}
+
+/* Define the custom scrollbar appearance (Webkit) */
+body::-webkit-scrollbar-thumb {
+	background: transparent; /* Set to the background color to make it invisible */
 }
 canvas {
 	background-color: var(--neutral-500);
 	border-radius: 0 0 10px 10px;
 }
+
 .grid {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: 0.5%;
 	margin-left: auto;
 	margin-right: auto;
-	width: 100%;
+
 	max-width: 700px;
 	width: 100%;
 	height: 65px;
 	border-radius: 0px 0px 10px 10px;
 	background-color: var(--neutral-200);
-	padding: 10px;
+	padding: 0;
 }
 .menu-button {
 	background-color: var(--neutral-200);
@@ -135,7 +159,7 @@ h2 {
 	margin-top: -0.5rem;
 }
 
-@media only screen and (min-width: 500) {
+@media only screen and (min-width: 1200px) {
 	.align-p-right {
 		transform: translate(0, -2rem);
 		text-align: end !important;
